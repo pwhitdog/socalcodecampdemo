@@ -9,17 +9,17 @@ echo 'Appname: ' $APPNAME
 
 INSTANCE=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
 echo "instance name = " $INSTANCE  >> /home/ec2-user/instance.log
-sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APPNAME --region us-west-2" ec2-user
+sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APPNAME --region us-west-2 --profile demo" ec2-user
 
 echo "registering with elastic load balancer" >> /home/ec2-user/instance.log
-aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2
+sudo su -c "aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2 --profile demo" ec2-user
 echo "load balanced" >> /home/ec2-user/instance.log
 
 cd /home/ec2-user
 echo "starting getLatestDeploy"  >> /home/ec2-user/instance.log
 sudo su -c "node /home/ec2-user/getLatestDeploy.js $APPNAME $BUCKETNAME" ec2-user
 VERSION=`ls *.zip`
-aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2
+sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2 --profile demo" ec2-user
 cd /home/ec2-user/$APPNAME
 echo "starting app" >> /home/ec2-user/instance.log
 sudo su -c 'forever start bin/www &' ec2-user
