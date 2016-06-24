@@ -12,14 +12,14 @@ echo "instance name = " $INSTANCE  >> /home/ec2-user/instance.log
 aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APPNAME --region us-west-2
 
 echo "registering with elastic load balancer" >> /home/ec2-user/instance.log
-aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-east-1
+aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2
 echo "load balanced" >> /home/ec2-user/instance.log
 
 cd /home/ec2-user
 echo "starting getLatestDeploy"  >> /home/ec2-user/instance.log
 sudo su -c "node /home/ec2-user/getLatestDeploy.js WebCentral.$APPNAME $BUCKETNAME" ec2-user
 VERSION=`ls *.zip`
-aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-east-1
+aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2
 cd /home/ec2-user/WebCentral.$APPNAME
 echo "starting app" >> /home/ec2-user/instance.log
 sudo su -c 'forever start bin/www &' ec2-user
