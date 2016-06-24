@@ -318,7 +318,7 @@
       <workItem from="1466747948895" duration="1245000" />
       <workItem from="1466751105118" duration="4030000" />
       <workItem from="1466791044509" duration="2727000" />
-      <workItem from="1466801377667" duration="7560000" />
+      <workItem from="1466801377667" duration="7686000" />
     </task>
     <task id="LOCAL-00001" summary="Added a basic structure.">
       <created>1466751164293</created>
@@ -366,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15562000" />
+    <option name="totallyTimeSpent" value="15688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
