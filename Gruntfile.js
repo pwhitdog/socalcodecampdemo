@@ -19,12 +19,12 @@ module.exports = function(grunt) {
 
     /* Register composite grunt tasks */
 
-    grunt.registerTask('gruntDeploy', gruntDeploy('socalcodecampdemo'));
-    grunt.registerTask('npmInstall', npmInstall('socalcodecampdemo'));
-    grunt.registerTask('zipDeploy', zip('socalcodecampdemo'));
-    grunt.registerTask('s3Upload', s3Upload('socalcodecampdemo', bucketName, profileName));
-    grunt.registerTask('createBootScript', createBootScript('socalcodecampdemo', bucketName, 'lb-web-central'));
-    grunt.registerTask('launchInstance', launchInstance('socalcodecampdemo', profileName, 'web-server', securityGroup));
+    grunt.registerTask('gruntDeploy', gruntDeploy('socaldemo'));
+    grunt.registerTask('npmInstall', npmInstall('socaldemo'));
+    grunt.registerTask('zipDeploy', zip('socaldemo'));
+    grunt.registerTask('s3Upload', s3Upload('socaldemo', bucketName, profileName));
+    grunt.registerTask('createBootScript', createBootScript('socaldemo', bucketName, 'lb-web-central'));
+    grunt.registerTask('launchInstance', launchInstance('socaldemo', profileName, 'web-server', securityGroup));
 
 
     grunt.registerTask('deploy', ['gruntDeploy','npmInstall', 'zipDeploy', 's3Upload', 'createBootScript', 'launchInstance']);
