@@ -9,7 +9,7 @@ echo 'Appname: ' $APPNAME
 
 INSTANCE=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
 echo "instance name = " $INSTANCE  >> /home/ec2-user/instance.log
-aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APPNAME --region us-east-1
+aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APPNAME --region us-west-2
 
 echo "registering with elastic load balancer" >> /home/ec2-user/instance.log
 aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-east-1
