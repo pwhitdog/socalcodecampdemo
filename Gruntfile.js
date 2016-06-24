@@ -10,7 +10,6 @@ module.exports = function(grunt) {
     var bucketName = grunt.option('bucketName');
     var profileName = grunt.option('profileName');
     var securityGroup = grunt.option('securityGroup');
-    var subnetName = grunt.option('subnetName');
 
     /* Load grunt task adapters */
 
@@ -25,7 +24,7 @@ module.exports = function(grunt) {
     grunt.registerTask('zipDeploy', zip('socalcodecampdemo'));
     grunt.registerTask('s3Upload', s3Upload('socalcodecampdemo', bucketName, profileName));
     grunt.registerTask('createBootScript', createBootScript('socalcodecampdemo', bucketName, 'lb-web-central'));
-    grunt.registerTask('launchInstance', launchInstance('socalcodecampdemo', profileName, 'web-server', securityGroup, subnetName));
+    grunt.registerTask('launchInstance', launchInstance('socalcodecampdemo', profileName, 'web-server', securityGroup));
 
 
     grunt.registerTask('deploy', ['gruntDeploy','npmInstall', 'zipDeploy', 's3Upload', 'createBootScript', 'launchInstance']);
