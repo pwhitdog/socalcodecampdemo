@@ -47,8 +47,8 @@
       <file leaf-file-name="grunt-launchInstance.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="9" column="135" selection-start-line="9" selection-start-column="135" selection-end-line="9" selection-end-column="135" />
+            <state relative-caret-position="200">
+              <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -303,7 +303,7 @@
       <workItem from="1466747948895" duration="1245000" />
       <workItem from="1466751105118" duration="4030000" />
       <workItem from="1466791044509" duration="2727000" />
-      <workItem from="1466801377667" duration="4235000" />
+      <workItem from="1466801377667" duration="4901000" />
     </task>
     <task id="LOCAL-00001" summary="Added a basic structure.">
       <created>1466751164293</created>
@@ -351,7 +351,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12237000" />
+    <option name="totallyTimeSpent" value="12903000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
@@ -657,8 +657,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="135" selection-start-line="9" selection-start-column="135" selection-end-line="9" selection-end-column="135" />
+        <state relative-caret-position="200">
+          <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
           <folding />
         </state>
       </provider>
