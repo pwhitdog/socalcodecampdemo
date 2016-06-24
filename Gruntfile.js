@@ -24,7 +24,7 @@ module.exports = function(grunt) {
     grunt.registerTask('zipDeploy', zip('socaldemo'));
     grunt.registerTask('s3Upload', s3Upload('socaldemo', bucketName, profileName));
     grunt.registerTask('createBootScript', createBootScript('socaldemo', bucketName, 'lb-web-central'));
-    grunt.registerTask('launchInstance', launchInstance('socaldemo', profileName, 'web-server', securityGroup));
+    grunt.registerTask('launchInstance', launchInstance('socaldemo', profileName, 'demo', securityGroup));
 
 
     grunt.registerTask('deploy', ['gruntDeploy','npmInstall', 'zipDeploy', 's3Upload', 'createBootScript', 'launchInstance']);
