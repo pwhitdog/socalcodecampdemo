@@ -49,9 +49,6 @@ function deploy(appName) {
                     }
                 };
 
-                console.log('reading package.json');
-                var packageContent = require('../' + appName + '/package.json');
-
 
                 ncp('.', destDir, options, function (err) {
                     if (err) {
