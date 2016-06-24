@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     grunt.registerTask('npmInstall', npmInstall('socaldemo'));
     grunt.registerTask('zipDeploy', zip('socaldemo'));
     grunt.registerTask('s3Upload', s3Upload('socaldemo', bucketName, profileName));
-    grunt.registerTask('createBootScript', createBootScript('socaldemo', bucketName, 'lb-web-central'));
+    grunt.registerTask('createBootScript', createBootScript('socaldemo', bucketName, 'code-camp-lb'));
     grunt.registerTask('launchInstance', launchInstance('socaldemo', profileName, 'demo', securityGroup));
 
 
