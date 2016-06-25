@@ -6,7 +6,7 @@ function launchInstance(appName, profile, instanceProfileName, securityGroup) {
 
     var filename = "file://../boot" + appName + ".sh";
     return function() {
-        var command = 'aws ec2 run-instances --profile ' + profile + ' --image-id ami-1d2ee97d --user-data ' +
+        var command = 'aws ec2 run-instances --profile ' + profile + ' --image-id ami-b6488fd6 --user-data ' +
             filename + '  --count ' + count + ' --instance-type t2.small --security-group-ids ' + securityGroup +  ' --key-name aws-key --associate-public-ip-address';
 
         child.execSync(command);

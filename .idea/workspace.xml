@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="474d05de-f4e8-4eca-8468-0a98680b20b8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gruntConfigs/bootGenericServerTemplate.sh" afterPath="$PROJECT_DIR$/gruntConfigs/bootGenericServerTemplate.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js" afterPath="$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js" />
     </list>
     <ignored path="socalcodecampdemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grunt-launchInstance.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="grunt-launchInstance.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="200">
@@ -66,8 +66,8 @@
       <file leaf-file-name="grunt-createBootScript.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-createBootScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+            <state relative-caret-position="450">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -103,10 +103,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootGenericServerTemplate.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bootGenericServerTemplate.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gruntConfigs/bootGenericServerTemplate.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
+            <state relative-caret-position="578">
               <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
               <folding />
             </state>
@@ -141,8 +141,8 @@
         <option value="$PROJECT_DIR$/gruntConfigs/grunt-createBootScript.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js" />
         <option value="$PROJECT_DIR$/gruntConfigs/bootGenericServerTemplate.sh" />
+        <option value="$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js" />
       </list>
     </option>
   </component>
@@ -317,7 +317,7 @@
       <workItem from="1466747948895" duration="1245000" />
       <workItem from="1466751105118" duration="4030000" />
       <workItem from="1466791044509" duration="2727000" />
-      <workItem from="1466801377667" duration="10191000" />
+      <workItem from="1466801377667" duration="11699000" />
     </task>
     <task id="LOCAL-00001" summary="Added a basic structure.">
       <created>1466751164293</created>
@@ -365,7 +365,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18193000" />
+    <option name="totallyTimeSpent" value="19701000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
@@ -637,14 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-createBootScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -669,18 +661,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js">
+    <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-createBootScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
+        <state relative-caret-position="450">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gruntConfigs/bootGenericServerTemplate.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
+        <state relative-caret-position="578">
           <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gruntConfigs/grunt-launchInstance.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="94" selection-start-line="8" selection-start-column="94" selection-end-line="8" selection-end-column="94" />
           <folding />
         </state>
       </provider>
