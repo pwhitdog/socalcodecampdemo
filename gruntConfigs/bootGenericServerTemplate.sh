@@ -22,7 +22,7 @@ VERSION=`ls *.zip`
 sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2 --profile demo" ec2-user
 cd /home/ec2-user/$APPNAME
 echo "starting app" >> /home/ec2-user/instance.log
-sudo su -c 'forever start bin/www &' ec2-user
+sudo su -c '~/.nvm/versions/node/v6.2.2/bin/forever start bin/www &' ec2-user
 sudo su -c "~/.nvm/versions/node/v6.2.2/bin/node /home/ec2-user/healthOfInstanceChecker.js ${LB} ${INSTANCE} ${VERSION}" ec2-user
 sudo su -c "echo '*/1 * * * * ~/.nvm/versions/node/v6.2.2/bin/node /home/ec2-user/deathCron.js ${LB}' > /home/ec2-user/cronJob" ec2-user
 sudo su -c "echo 'crontab -l | { cat; cat /home/ec2-user/cronJob; } | crontab -' | at now +10 minutes" ec2-user
