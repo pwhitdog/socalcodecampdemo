@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="82">
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="ada53ec6-0321-4710-ba9c-574184439b20" />
+  <pipelines group="defaultGroup">
+    <pipeline name="socaldemo">
+      <materials>
+        <git url="https://github.com/pwhitdog/socalcodecampdemo.git" />
+      </materials>
+      <stage name="defaultStage">
+        <jobs>
+          <job name="defaultJob">
+            <tasks>
+              <exec command="npm">
+                <arg>install</arg>
+              </exec>
+              <exec command="grunt">
+                <arg>deploy</arg>
+                <arg>--bucketName="YOUR BUCKET NAME"</arg>
+                <arg>--profileName="YOUR PROFILE NAME"</arg>
+                <arg>--securityGroup="YOUR SECURITY GROUP NAME"</arg>
+                <arg>--yourAMI="YOUR AMI"</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>
+
