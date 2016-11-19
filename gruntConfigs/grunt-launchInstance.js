@@ -6,6 +6,8 @@ module.exports = function (params) {
     var sshKeyName = 'demos-ci';
     var filename = "file://../boot" + params.appName + ".sh";
     var instanceType = 't2.micro';
+    var profileData = 'Arn=arn:aws:iam::' + params.accountId +
+        ':instance-profile/demos-ci,Name=demos-ci';
 
     var command = 'aws ec2 run-instances --image-id ' + params.ami +
         ' --user-data ' + filename +
@@ -13,6 +15,7 @@ module.exports = function (params) {
         ' --instance-type ' + instanceType +
         ' --security-group-ids ' + params.securityGroup +
         ' --key-name ' + sshKeyName +
+        ' --iam-instance-profile ' + profileData +
         ' --associate-public-ip-address';
 
     return function () {
