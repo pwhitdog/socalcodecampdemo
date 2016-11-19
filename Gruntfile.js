@@ -10,7 +10,6 @@ module.exports = function (grunt) {
     var profileName = grunt.option('profileName');
     var securityGroup = grunt.option('securityGroup');
     var yourAMI = grunt.option('ami');
-    var accountId = grunt.option('accountId');
 
     /* Load grunt task adapters */
 
@@ -31,7 +30,6 @@ module.exports = function (grunt) {
         launchInstance({
             appName: 'socaldemo',
             profileName: profileName,
-            accountId: accountId,
             securityGroup: securityGroup,
             ami: yourAMI
         }));
