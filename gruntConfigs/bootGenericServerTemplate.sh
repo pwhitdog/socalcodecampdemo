@@ -12,9 +12,10 @@ echo "instance name = " ${INSTANCE}  >> /home/ec2-user/instance.log
 echo "Tagging ${INSTANCE} with App Name"
 sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APP_NAME --region us-west-2" ec2-user
 
-echo "registering with elastic load balancer" >> /home/ec2-user/instance.log
-sudo su -c "aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2 --profile demo" ec2-user
-echo "load balanced" >> /home/ec2-user/instance.log
+echo "Registering with ${LB}" >> /home/ec2-user/instance.log
+echo "Registering with ${LB}"
+sudo su -c "aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2" ec2-user
+echo "Registering with ${LB}--done" >> /home/ec2-user/instance.log
 
 cd /home/ec2-user
 echo "starting getLatestDeploy"  >> /home/ec2-user/instance.log
