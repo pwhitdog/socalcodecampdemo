@@ -8,6 +8,7 @@ module.exports = function (params) {
     var instanceType = 't2.micro';
     var profileData = 'Arn=arn:aws:iam::' + params.accountId +
         ':instance-profile/demos-ci,Name=demos-ci';
+    profileData = 'Name=demos-ci';
 
     var command = 'aws ec2 run-instances --image-id ' + params.ami +
         ' --user-data ' + filename +
