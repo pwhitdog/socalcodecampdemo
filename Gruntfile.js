@@ -1,4 +1,4 @@
-﻿﻿var process = require('process');
+﻿var process = require('process');
 var gruntDeploy = require('./gruntConfigs/grunt-deploy');
 var npmInstall = require('./gruntConfigs/npm-install');
 var zip = require('./gruntConfigs/grunt-zip');
@@ -25,7 +25,15 @@ module.exports = function(grunt) {
     grunt.registerTask('zipDeploy', zip('socaldemo'));
     grunt.registerTask('s3Upload', s3Upload('socaldemo', bucketName, profileName));
     grunt.registerTask('createBootScript', createBootScript('socaldemo', bucketName, 'code-camp-lb'));
-    grunt.registerTask('launchInstance', launchInstance('socaldemo', profileName, 'demo', securityGroup, yourAMI));
+
+    var params = {
+        appName: 'socaldemo',
+        profileName: profileName,
+        instanceProfileName: 'demo',
+        securityGroup: securityGroup,
+        ami: yourAMI
+    };
+    grunt.registerTask('launchInstance', launchInstance(params.profileName, params.instanceProfileName, params.securityGroup, params.ami, params));
 
 
     grunt.registerTask('deploy', ['gruntDeploy','npmInstall', 'zipDeploy', 's3Upload', 'createBootScript', 'launchInstance']);
