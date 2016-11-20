@@ -18,7 +18,7 @@ echo "Registering with ${LB}--done"
 
 cd /home/ec2-user
 echo "Getting latest version of ${APP_NAME} from ${BUCKET_NAME}"
-sudo su -c "npm install aws-sdk" ec2-user
+sudo su -c "npm install aws-sdk yauzl mkdirp" ec2-user
 sudo su -c "node /home/ec2-user/getLatestDeploy.js $APP_NAME $BUCKET_NAME" ec2-user
 
 VERSION=`ls *.zip`

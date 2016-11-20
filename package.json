@@ -31,6 +31,8 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.7.5",
-    "grunt": "^1.0.1"
+    "grunt": "^1.0.1",
+    "yauzl": "^2.7.0",
+    "mkdirp": "latest"
   }
 }
