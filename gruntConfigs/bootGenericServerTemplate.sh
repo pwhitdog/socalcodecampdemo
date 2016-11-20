@@ -21,15 +21,17 @@ echo "Getting latest version of ${APP_NAME} from ${BUCKET_NAME}"
 sudo su -c "npm install aws-sdk yauzl mkdirp" ec2-user
 sudo su -c "node /home/ec2-user/get-latest-deploy.js $APP_NAME $BUCKET_NAME" ec2-user
 
+echo "Tagging $INSTANCE with version"
 VERSION=`ls *.zip`
 sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2" ec2-user
 sudo su -c "rm *.zip" ec2-user
 
 cd /home/ec2-user/${APP_NAME}
-echo "starting app" >> /home/ec2-user/instance.log
-echo ${LB} ${INSTANCE} ${VERSION} >> /home/ec2-user/instance.log
-
+echo "Starting $APP_NAME..."
 sudo su -c 'forever start bin/www &' ec2-user
-sudo su -c "node /home/ec2-user/healthOfInstanceChecker.js ${LB} ${INSTANCE} ${VERSION}" ec2-user
+
+echo "Waiting for app to become healthy before removing other versions."
+sudo su -c "node /home/ec2-user/instance-health-checker.js ${LB} ${INSTANCE} ${VERSION}" ec2-user
+
 sudo su -c "echo '*/1 * * * * node /home/ec2-user/deathCron.js ${LB}' > /home/ec2-user/cronJob" ec2-user
 sudo su -c "echo 'crontab -l | { cat; cat /home/ec2-user/cronJob; } | crontab -' | at now +10 minutes" ec2-user
