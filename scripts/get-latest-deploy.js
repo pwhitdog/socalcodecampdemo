@@ -4,16 +4,10 @@ var yauzl = require('yauzl');
 var mkdirp = require('mkdirp');
 var path = require('path');
 
-// Create an S3 client
 var s3 = new AWS.S3();
 
-// Create a bucket and upload something into it
-var bucket = 'demos-jcounts';
-var prefix = 'socaldemo';
-var bucketParams = {
-    Bucket: bucket,
-    Prefix: prefix
-};
+var prefix = process.argv[0];
+var bucket = process.argv[1];
 
 var getLatestPackageKey = function (data) {
     return data.Contents
@@ -75,6 +69,11 @@ var savePackage = function (packageKey) {
             unzip(fileName);
         }
     });
+};
+
+var bucketParams = {
+    Bucket: bucket,
+    Prefix: prefix
 };
 
 s3.listObjectsV2(bucketParams, function (err, data) {
