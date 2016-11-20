@@ -24,6 +24,41 @@ var getLatestPackageKey = function (data) {
         .reverse()[0];
 };
 
+var unzip = function (fileName) {
+    yauzl.open(fileName, {lazyEntries: true}, function (err, zipFile) {
+        if (err) {
+            throw err;
+        }
+
+        zipFile.readEntry();
+        zipFile.on("entry", function (entry) {
+            console.log(entry.fileName);
+            if (/\/$/.test(entry.fileName)) {
+                mkdirp(entry.fileName, function (err) {
+                    if (err) {
+                        throw err;
+                    }
+
+                    zipFile.readEntry();
+                });
+            } else {
+                zipFile.openReadStream(entry, function (err, readStream) {
+                    if (err) {
+                        throw err;
+                    }
+                    mkdirp(path.dirname(entry.fileName), function (err) {
+                        if (err) throw err;
+                        readStream.pipe(fs.createWriteStream(entry.fileName));
+                        readStream.on("end", function () {
+                            zipFile.readEntry();
+                        });
+                    });
+                });
+            }
+        });
+    });
+};
+
 var savePackage = function (packageKey) {
     var params = {
         Bucket: bucket,
@@ -37,38 +72,7 @@ var savePackage = function (packageKey) {
         else {
             var fileName = packageKey.replace(prefix + '/', '');
             fs.writeFileSync(fileName, data.Body);
-
-            yauzl.open(fileName, {lazyEntries: true}, function(err, zipFile) {
-                if (err) {
-                    throw err;
-                }
-
-                zipFile.readEntry();
-                zipFile.on("entry", function(entry) {
-                    if (/\/$/.test(entry.fileName)) {
-                        mkdirp(entry.fileName, function(err) {
-                            if (err) {
-                                throw err;
-                            }
-
-                            zipFile.readEntry();
-                        });
-                    } else {
-                        zipFile.openReadStream(entry, function(err, readStream) {
-                            if (err) {
-                                throw err;
-                            }
-                            mkdirp(path.dirname(entry.fileName), function(err) {
-                                if (err) throw err;
-                                readStream.pipe(fs.createWriteStream(entry.fileName));
-                                readStream.on("end", function() {
-                                    zipFile.readEntry();
-                                });
-                            });
-                        });
-                    }
-                });
-            });
+            unzip(fileName);
         }
     });
 };

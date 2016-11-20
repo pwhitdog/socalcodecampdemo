@@ -19,10 +19,11 @@ echo "Registering with ${LB}--done"
 cd /home/ec2-user
 echo "Getting latest version of ${APP_NAME} from ${BUCKET_NAME}"
 sudo su -c "npm install aws-sdk yauzl mkdirp" ec2-user
-sudo su -c "node /home/ec2-user/getLatestDeploy.js $APP_NAME $BUCKET_NAME" ec2-user
+sudo su -c "node /home/ec2-user/get-latest-deploy.js $APP_NAME $BUCKET_NAME" ec2-user
 
 VERSION=`ls *.zip`
 sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Version,Value=$VERSION --region us-west-2" ec2-user
+sudo su -c "rm *.zip" ec2-user
 
 cd /home/ec2-user/${APP_NAME}
 echo "starting app" >> /home/ec2-user/instance.log
