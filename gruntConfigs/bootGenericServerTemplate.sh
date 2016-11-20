@@ -8,17 +8,17 @@ echo 'Bucket Name: ' ${BUCKET_NAME}
 echo 'App Name: ' ${APP_NAME}
 
 INSTANCE=`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`
-echo "instance name = " ${INSTANCE}  >> /home/ec2-user/instance.log
+
 echo "Tagging ${INSTANCE} with App Name"
 sudo su -c "aws ec2 create-tags --resources $INSTANCE --tags Key=Name,Value=$APP_NAME --region us-west-2" ec2-user
 
-echo "Registering with ${LB}" >> /home/ec2-user/instance.log
 echo "Registering with ${LB}"
 sudo su -c "aws elb register-instances-with-load-balancer --load-balancer-name $LB --instances $INSTANCE --region us-west-2" ec2-user
-echo "Registering with ${LB}--done" >> /home/ec2-user/instance.log
+echo "Registering with ${LB}--done"
 
 cd /home/ec2-user
-echo "starting getLatestDeploy"  >> /home/ec2-user/instance.log
+echo "Getting latest version of ${APP_NAME} from ${BUCKET_NAME}"
+sudo su -c "npm install aws-sdk" ec2-user
 sudo su -c "node /home/ec2-user/getLatestDeploy.js $APP_NAME $BUCKET_NAME" ec2-user
 
 VERSION=`ls *.zip`

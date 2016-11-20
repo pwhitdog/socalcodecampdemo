@@ -30,6 +30,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "aws-sdk": "^2.7.5",
     "grunt": "^1.0.1"
   }
 }
