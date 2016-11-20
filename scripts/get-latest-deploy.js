@@ -6,8 +6,18 @@ var path = require('path');
 
 var s3 = new AWS.S3();
 
-var prefix = process.argv[0];
-var bucket = process.argv[1];
+var appName = process.argv[2];
+var bucket = process.argv[3];
+
+if (!appName) {
+    console.error('App Name must not be undefined');
+    process.exit(1);
+}
+
+if (!bucket) {
+    console.error('Bucket must not be undefined');
+    process.exit(1);
+}
 
 var getLatestPackageKey = function (data) {
     return data.Contents
@@ -64,7 +74,7 @@ var savePackage = function (packageKey) {
             console.log(err, err.stack);
         }
         else {
-            var fileName = packageKey.replace(prefix + '/', '');
+            var fileName = packageKey.replace(appName + '/', '');
             fs.writeFileSync(fileName, data.Body);
             unzip(fileName);
         }
@@ -73,7 +83,7 @@ var savePackage = function (packageKey) {
 
 var bucketParams = {
     Bucket: bucket,
-    Prefix: prefix
+    Prefix: appName
 };
 
 s3.listObjectsV2(bucketParams, function (err, data) {
