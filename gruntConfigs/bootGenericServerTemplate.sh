@@ -33,5 +33,6 @@ sudo su -c 'forever start bin/www &' ec2-user
 echo "Waiting for app to become healthy before removing other versions."
 sudo su -c "node /home/ec2-user/instance-health-checker.js ${LB} ${INSTANCE} ${VERSION}" ec2-user
 
-sudo su -c "echo '*/1 * * * * node /home/ec2-user/deathCron.js ${LB}' > /home/ec2-user/cronJob" ec2-user
+sudo su -c "echo '*/1 * * * * node /home/ec2-user/death-cron.js ${LB} ${INSTANCE}' > /home/ec2-user/cronJob" ec2-user
 sudo su -c "echo 'crontab -l | { cat; cat /home/ec2-user/cronJob; } | crontab -' | at now +10 minutes" ec2-user
+sudo su -c "rm /home/ec2-user/cronJob" ec2-user
