@@ -4,8 +4,6 @@ provider "aws" {
   region = "${var.region}"
 }
 
-resource "aws_instance" "example" {
-  ami = "ami-0a5df16a"
-  instance_type = "t2.micro"
-  vpc_security_group_ids = ["sg-724c140b"]
+resource "aws_ecr_repository" "codecampci_ecr" {
+  name = "codecampci"
 }
