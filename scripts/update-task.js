@@ -1,8 +1,8 @@
 var AWS = require('aws-sdk');
 var clientConfig = {region: process.env['AWS_DEFAULT_REGION']};
 
+var projectName = process.env['REPOSITORY_NAME'];
 function updateTask() {
-    var projectName = process.env['REPOSITORY_NAME'];
     var tag = '1.0.' + process.env['GO_PIPELINE_LABEL'];
     var imageUri = process.env['REPOSITORY_URL'] + '/' + projectName + ':' + tag;
 
@@ -25,16 +25,45 @@ function updateTask() {
     };
 
     var ecs = new AWS.ECS(clientConfig);
-    ecs.registerTaskDefinition(params, function (err, data) {
-        if (err) {
-            console.log(err, err.stack);
-            process.exit(1);
-        }
-        else {
-            console.log(data);
-            process.exit(0);
-        }
-    });
+
+
+    return new Promise(function (fulfill, reject) {
+        ecs.registerTaskDefinition(params, function (err, data) {
+            if (err) {
+                reject(err)
+            }
+            else {
+                console.log(data);
+                fulfill(data)
+            }
+        });
+    })
 }
 
-updateTask();
+function updateService(taskData) {
+    var params = {
+        service: projectName,
+        cluster: projectName,
+        taskDefinition: taskData.taskDefinition.taskDefinitionArn
+    };
+
+    var ecs = new AWS.ECS(clientConfig);
+
+    return new Promise(function (fulfill, reject) {
+        ecs.updateService(params, function (err, data) {
+            if (err) {
+                reject(err);
+            }
+            else {
+                console.log(data);
+                fulfill(data);
+            }
+        });
+    })
+}
+
+updateTask()
+    .then(updateService)
+    .error(function () {
+        process.exit(1);
+    });
