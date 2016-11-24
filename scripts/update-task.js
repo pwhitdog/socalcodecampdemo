@@ -64,6 +64,6 @@ function updateService(taskData) {
 
 updateTask()
     .then(updateService)
-    .error(function () {
+    .catch(function () {
         process.exit(1);
     });
