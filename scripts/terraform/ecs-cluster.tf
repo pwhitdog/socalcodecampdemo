@@ -16,7 +16,7 @@ resource "aws_ecs_cluster" "codecampci_ecs" {
 resource "aws_ecs_service" "codecampci_service" {
   name = "codecampci"
   cluster = "${aws_ecs_cluster.codecampci_ecs.id}"
-  task_definition = "arn:aws:ecs:us-west-2:417922976742:task-definition/codecampci:1"
+  task_definition = "arn:aws:ecs:us-west-2:417922976742:task-definition/codecampci:2"
   desired_count = 2
   // iam_role = "arn:aws:iam::417922976742:role/demos-ci"
   // TODO: use this if terraform created the policy so that terraform can destroy them in the right order

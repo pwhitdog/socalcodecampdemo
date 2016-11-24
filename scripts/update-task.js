@@ -21,8 +21,7 @@ function updateTask() {
                 ]
             }
         ],
-        family: projectName,
-        taskRoleArn: 'demos-ci'
+        family: projectName
     };
 
     var ecs = new AWS.ECS(clientConfig);
