@@ -15,7 +15,7 @@ resource "aws_ecs_cluster" "codecampci_ecs" {
 resource "aws_ecs_service" "codecampci_service" {
   name            = "codecampci"
   cluster         = "${aws_ecs_cluster.codecampci_ecs.id}"
-  task_definition = "arn:aws:ecs:us-west-2:417922976742:task-definition/codecampci:2"
+  task_definition = "arn:aws:ecs:us-west-2:417922976742:task-definition/codecampci:4"
   desired_count   = 2
 
   // iam_role = "arn:aws:iam::417922976742:role/demos-ci"
@@ -49,19 +49,24 @@ data "template_file" "user_data" {
   }
 }
 
-resource "aws_instance" "codecampci_ec2" {
-  ami           = "ami-7abc111a"
+resource "aws_launch_configuration" "codecamp_lc" {
+  name          = "codecamp"
+  image_id      = "ami-7abc111a"
   instance_type = "t2.micro"
   key_name      = "demos-ci"
 
-  vpc_security_group_ids = [
+  security_groups = [
     "sg-724c140b",
   ]
 
   user_data            = "${data.template_file.user_data.rendered}"
   iam_instance_profile = "ecsInstanceRole"
+}
 
-  tags {
-    Name = "ecs-instance"
-  }
+resource "aws_autoscaling_group" "codecamp_asg" {
+  name                 = "codecamp"
+  launch_configuration = "${aws_launch_configuration.codecamp_lc.name}"
+  max_size             = 8
+  min_size             = 1
+  availability_zones = ["us-west-2a","us-west-2b","us-west-2c"]
 }
