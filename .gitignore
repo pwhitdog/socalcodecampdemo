@@ -2,3 +2,4 @@ node_modules
 /~*.pptx
 secret.tfvars
 *.tfstate.backup
+*.tfplan
