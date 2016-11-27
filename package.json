@@ -30,6 +30,9 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1"
+    "aws-sdk": "^2.7.5",
+    "grunt": "^1.0.1",
+    "yauzl": "^2.7.0",
+    "mkdirp": "latest"
   }
 }

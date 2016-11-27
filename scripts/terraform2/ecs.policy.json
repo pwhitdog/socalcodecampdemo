@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "ec2:AuthorizeSecurityGroup*",
+        "ec2:CreateSecurityGroup",
+        "ec2:DeleteSecurityGroup",
+        "ec2:Describe*",
+        "ec2:RevokeSecurityGroup*",
+        "ecs:CreateCluster",
+        "ecs:DeleteCluster",
+        "ecs:DescribeClusters"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}

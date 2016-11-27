@@ -1,17 +1,24 @@
-'use strict'
+'use strict';
 var child = require('child_process');
 
-function launchInstance(appName, profile, instanceProfileName, securityGroup, yourAMIGoesHERE) {
+module.exports = function (params) {
     var count = 2;
+    var sshKeyName = 'demos-ci';
+    var filename = "file://../boot" + params.appName + ".sh";
+    var instanceType = 't2.micro';
+    var profileData = 'Name=demos-ci';
 
-    var filename = "file://../boot" + appName + ".sh";
-    return function() {
-        var command = 'aws ec2 run-instances --profile ' + profile + ' --image-id ' + yourAMIGoesHERE + ' --user-data ' +
+    var command = 'aws ec2 run-instances --image-id ' + params.ami +
+        ' --user-data ' + filename +
+        ' --count ' + count +
+        ' --instance-type ' + instanceType +
+        ' --security-group-ids ' + params.securityGroup +
+        ' --key-name ' + sshKeyName +
+        ' --iam-instance-profile ' + profileData +
+        ' --associate-public-ip-address';
 
-            filename + '  --count ' + count + ' --instance-type t2.small --security-group-ids ' + securityGroup +  ' --key-name aws-key --associate-public-ip-address';
-
+    return function () {
         child.execSync(command);
     }
-}
+};
 
-module.exports = launchInstance;
