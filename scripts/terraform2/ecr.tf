@@ -19,7 +19,7 @@ data "template_file" "update-image" {
 
   vars {
     REPOSITORY_NAME = "${aws_ecr_repository.tfci_ecr.name}"
-    REPOSITORY_URL = "${aws_ecr_repository.tfci_ecr.repository_url}"
+    REPOSITORY_URL  = "${aws_ecr_repository.tfci_ecr.repository_url}"
   }
 }
 
